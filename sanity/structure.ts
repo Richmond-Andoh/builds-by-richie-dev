@@ -1,0 +1,174 @@
+import type { StructureResolver } from "sanity/structure";
+import {
+  AsteriskIcon,
+  CaseIcon,
+  ProjectsIcon,
+  RocketIcon,
+  TagIcon,
+  UserIcon,
+  BookIcon,
+  DocumentIcon,
+  StarIcon,
+  ComposeIcon,
+  CommentIcon,
+  InlineIcon,
+  CogIcon,
+  DocumentsIcon,
+} from "@sanity/icons";
+
+// https://www.sanity.io/docs/structure-builder-cheat-sheet
+export const structure: StructureResolver = (S) =>
+  S.list()
+    .title("Content")
+    .items([
+      S.listItem()
+        .title("Profile")
+        .icon(UserIcon)
+        .child(
+          S.document().schemaType("profile").documentId("singleton-profile"),
+        ),
+      S.divider(),
+
+      // Portfolio
+      S.listItem()
+        .title("Portfolio")
+        .icon(RocketIcon)
+        .child(
+          S.list()
+            .title("Portfolio Content")
+            .items([
+              S.listItem()
+                .title("Projects")
+                .icon(ProjectsIcon)
+                .schemaType("project")
+                .child(S.documentTypeList("project").title("Projects")),
+
+              S.listItem()
+                .title("Skills")
+                .icon(AsteriskIcon)
+                .schemaType("skill")
+                .child(S.documentTypeList("skill").title("Skills")),
+
+              S.listItem()
+                .title("Service")
+                .icon(TagIcon)
+                .schemaType("service")
+                .child(S.documentTypeList("service").title("Services")),
+            ]),
+        ),
+      S.divider(),
+
+      // Professional Background
+      S.listItem()
+        .title("Professional Background")
+        .icon(CaseIcon)
+        .child(
+          S.list()
+            .title("Professional Background")
+            .items([
+              S.listItem()
+                .title("Work Experience")
+                .icon(CaseIcon)
+                .schemaType("experience")
+                .child(
+                  S.documentTypeList("experience").title("Work Experience"),
+                ),
+              S.listItem()
+                .title("Education")
+                .icon(BookIcon)
+                .schemaType("education")
+                .child(S.documentTypeList("education").title("Education")),
+
+              S.listItem()
+                .title("Certifications")
+                .icon(DocumentIcon)
+                .schemaType("certification")
+                .child(
+                  S.documentTypeList("certification").title("Certifications"),
+                ),
+
+              S.listItem()
+                .title("Achievements & Awards")
+                .icon(StarIcon)
+                .schemaType("achievement")
+                .child(
+                  S.documentTypeList("achievement").title(
+                    "Achievements & Awards",
+                  ),
+                ),
+            ]),
+        ),
+      S.divider(),
+
+      // Content and Community
+      S.listItem()
+        .title("Content and Community")
+        .icon(DocumentIcon)
+        .child(
+          S.list()
+            .title("Content and Community")
+            .items([
+              S.listItem()
+                .title("Blog Post")
+                .icon(ComposeIcon)
+                .schemaType("blog")
+                .child(S.documentTypeList("blog").title("Blog Post")),
+
+              S.listItem()
+                .title("Testimonials")
+                .icon(CommentIcon)
+                .schemaType("testimonial")
+                .child(S.documentTypeList("testimonial").title("Testimonials")),
+            ]),
+        ),
+      S.divider(),
+
+      // Contact Form
+      S.listItem()
+        .title("Contact Form")
+        .icon(InlineIcon)
+        .child(
+          S.list()
+            .title("Contact Form")
+            .items([
+              S.listItem()
+                .title("New Submissions")
+                .icon(InlineIcon)
+                .child(
+                  S.documentTypeList("contact")
+                    .title("New Submissions")
+                    .filter('_type == "contact" && status == "New"'),
+                ),
+
+              S.listItem()
+                .title("Archived")
+                .icon(InlineIcon)
+                .child(
+                  S.documentTypeList("contact")
+                    .title("Archived Submissions")
+                    .filter('_type == "contact" && status == "archive"'),
+                ),
+            ]),
+        ),
+
+      S.divider(),
+
+      // Navigation
+      S.listItem()
+        .title("Navigation Links")
+        .icon(DocumentsIcon)
+        .schemaType("navigation")
+        .child(S.documentTypeList("navigation").title("Navigation Links")),
+
+      S.divider(),
+
+      // Site Settings (Singleton)
+      S.listItem()
+        .title("Site Settings")
+        .icon(CogIcon)
+        .child(
+          S.document()
+            .schemaType("siteSettings")
+            .documentId("singleton-siteSettings"),
+        ),
+    ]);
