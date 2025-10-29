@@ -20,7 +20,7 @@ export default defineType({
     }),
 
     defineField({
-      name: "headLine",
+      name: "headline",
       title: "Professional Headline",
       type: "string",
       description: 'E.g., "Full Stack Developer"',

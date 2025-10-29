@@ -3043,7 +3043,7 @@
         },
         "optional": true
       },
-      "headLine": {
+      "headline": {
         "type": "objectAttribute",
         "value": {
           "type": "string"

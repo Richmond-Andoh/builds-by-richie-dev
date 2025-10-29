@@ -25,19 +25,22 @@ export function ProfileImage({
   return (
     <button
       type="button"
-      //onClick={() => (isSignedIn ? toggleSidebar() : openSignIn())}
+      onClick={() => (isSignedIn ? toggleSidebar() : openSignIn())}
       className="relative aspect-square rounded-2xl overflow-hidden border-4 border-primary/20 block group cursor-pointer w-full"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       aria-label="Toggle AI Chat Sidebar"
     >
-      <Image
-        src={imageUrl}
-        alt={`${firstName} ${lastName}`}
-        fill
-        className="object-cover transition-transform duration-300 group-hover:scale-105"
-        priority
-      />
+      {imageUrl && (
+        <Image
+          src={imageUrl}
+          alt={`${firstName} ${lastName}`}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
+          priority
+        />
+      )}
 
       {/* Online Badge */}
       <div className="absolute top-4 right-4 flex items-center gap-2 bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-full">
