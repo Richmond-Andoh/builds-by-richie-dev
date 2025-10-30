@@ -25,8 +25,8 @@ const HERO_QUERY = defineQuery(`*[_id == "singleton-profile"][0]{
 
 const HeroSection = async () => {
   const { data: profile } = await sanityFetch({ query: HERO_QUERY });
-  console.log(profile);
-  //if (!profile) return null;
+  //console.log(profile);
+  if (!profile) return null;
 
   return (
     <section className="relative min-h-screen flex items-center justify-center px-6 py-20 overflow-hidden">

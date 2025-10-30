@@ -5,6 +5,9 @@ import { ClerkProvider } from "@clerk/nextjs";
 import { SanityLive } from "@/sanity/lib/live";
 import { SidebarProvider, SidebarInset } from "@/components/ui/sidebar";
 import { AppSidebar } from "@/components/app-sidebar";
+import { Sidebar } from "@/components/ui/sidebar";
+import { FloatingDock } from "@/components/FloatingDock";
+import SidebarToggle from "@/components/SidebarToggle";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,6 +38,9 @@ export default function RootLayout({
           <SidebarProvider>
             <SidebarInset>{children}</SidebarInset>
             <AppSidebar side="right" />
+
+            <FloatingDock />
+            <SidebarToggle />
           </SidebarProvider>
 
           <SanityLive />
